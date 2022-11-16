@@ -17,8 +17,6 @@ import javax.annotation.Resource;
 @ContextConfiguration
 public class MockTest {
 
-    @Resource
-    private TestService testService;
 
 
     @Test
