@@ -5,7 +5,6 @@ import com.lynn.skutil.spring.annotation.OpRecord;
 import com.lynn.skutil.spring.unit.OpStandardData;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -34,6 +33,7 @@ public class OpAspect {
             OpStandardData converted;
             converted = ovClazz.convert(point.getArgs()[0]);
             //  Do tings after this command
+
 
         } catch (Throwable e) {
             throw new RuntimeException(e);

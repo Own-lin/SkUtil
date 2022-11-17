@@ -2,7 +2,6 @@ package com.lynn.skutil.spring.api;
 
 import com.lynn.skutil.spring.TxCallbackWorker;
 import org.springframework.lang.NonNull;
-
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
