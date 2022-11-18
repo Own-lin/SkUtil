@@ -29,9 +29,17 @@ public class DateUtil {
     /**
      *  this {@link ThreadLocal} is a container to load {@link SimpleDateFormat}
      */
-    private static final ThreadLocal<SimpleDateFormat> TL_Y2S = ThreadLocal.withInitial(() -> new SimpleDateFormat(DateUtilEnum.Y2S.get()));
-    private static final ThreadLocal<SimpleDateFormat> TL_Y2D = ThreadLocal.withInitial(() -> new SimpleDateFormat(DateUtilEnum.Y2D.get()));
-    private static final ThreadLocal<SimpleDateFormat> TL_M2D = ThreadLocal.withInitial(() -> new SimpleDateFormat(DateUtilEnum.M2D.get()));
+
+
+    static {
+        TL_Y2S = ThreadLocal.withInitial(() -> new SimpleDateFormat(DateUtilEnum.Y2S.get()));
+        TL_Y2D = ThreadLocal.withInitial(() -> new SimpleDateFormat(DateUtilEnum.Y2D.get()));
+        TL_M2D = ThreadLocal.withInitial(() -> new SimpleDateFormat(DateUtilEnum.M2D.get()));
+    }
+
+    private static final ThreadLocal<SimpleDateFormat> TL_Y2S;
+    private static final ThreadLocal<SimpleDateFormat> TL_Y2D;
+    private static final ThreadLocal<SimpleDateFormat> TL_M2D;
 
 
     /**
@@ -62,6 +70,21 @@ public class DateUtil {
         return sdf.format(date);
     }
 
+    public static Date convert(SimpleDateFormat sdf){
+        return sdf.getCalendar().getTime();
+    }
+
+    /**
+     * Get the current time according to the format of dateType
+     * @param dateType {@link DateUtilEnum}
+     * @return {@link SimpleDateFormat}
+     * @throws ParseException ex
+     */
+    public static SimpleDateFormat getTime(DateUtilEnum dateType) throws ParseException {
+        SimpleDateFormat sdf;
+        sdf = checkAndGet(dateType).get();
+        return sdf;
+    }
 
 
 
@@ -84,7 +107,15 @@ public class DateUtil {
     }
 
 
-
+    /**
+     * provide an unuseful func that made ThreadLocalMap.Entry can be collect
+     */
+    @SuppressWarnings("unused")
+    private static void reload(){
+        TL_Y2S.remove();
+        TL_Y2D.remove();
+        TL_M2D.remove();
+    }
 
 
 

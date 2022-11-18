@@ -5,9 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,8 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @author zhan yan
  * @date 2022/11/18
  */
+@SpringBootTest
 @DisplayName("DateUtilTest")
-class DateUtilTest {
+class DateUtilTest{
 
     private static final Logger log = LoggerFactory.getLogger(DateUtilTest.class);
 
@@ -97,5 +100,17 @@ class DateUtilTest {
         } catch (Exception e) {
             log.error(e, e::toString);
         }
+    }
+
+    @Test
+    void convertToDate(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        Date date = new Date();
+
+        calendar.setTime(date);
+        sdf.setCalendar(calendar);
+        //  keep a mid param 'Date'
+        assertEquals(calendar.getTime().toString(), DateUtil.convert(sdf).toString());
     }
 }
