@@ -1,8 +1,5 @@
 package com.lynn.skutil.spring.unit;
 
-import com.lynn.skutil.spring.OpDataInterface;
-import org.springframework.util.Assert;
-
 import java.io.Serializable;
 
 /**
