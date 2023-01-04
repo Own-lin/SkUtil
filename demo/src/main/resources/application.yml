@@ -1,0 +1,13 @@
+
+
+spring:
+
+
+  redis:
+    url: r-wz9fuefwywwkpoftzrpd.redis.rds.aliyuncs.com
+    database: 1
+    password: 1075465357Cl
+
+
+server:
+  port: 8001
